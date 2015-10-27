@@ -23,3 +23,9 @@ func pause()
 func stop()
 
 func reset()
+
+## Demo Project
+
+The demo was built using Xcode 7 and Swift 2.0. Run and touch the screen to start the counters.
+
+![Screenshot](http://i.imgur.com/NgzMxsp.png)
