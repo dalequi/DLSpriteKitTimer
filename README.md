@@ -16,13 +16,13 @@ It requires a function that is executed at the end of the timer. The parameter i
 
 ## API
 
-func start()
+- func start()
 
-func pause()
+- func pause()
 
-func stop()
+- func stop()
 
-func reset()
+- func reset()
 
 ## Demo Project
 
