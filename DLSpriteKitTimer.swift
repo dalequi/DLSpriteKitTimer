@@ -9,13 +9,13 @@
 import Foundation
 import SpriteKit
 
-class DLSpriteKitTimer {
-    init(usingLabel label: SKLabelNode, seconds: Int, withActionPersecond: (() -> ())?, withFiringAction: () -> (), decreasing: Bool) {
+class DLSpriteKitTimer: SKLabelNode {
+    init(seconds: Int, withActionPersecond: (() -> ())?, withFiringAction: () -> (), decreasing: Bool) {
         self.running = false
-        self.label = label
         self.actionPerSecond = withActionPersecond
         self.firingAction = withFiringAction
         self.decreasingTime = decreasing
+        
         if self.decreasingTime {
             self.firstSecond = seconds
             self.lastSecond = 0
@@ -25,7 +25,14 @@ class DLSpriteKitTimer {
         }
         
         self.counter = self.firstSecond
-        self.label.text = String(self.counter)
+    
+        super.init()
+        
+        self.text = String(self.counter)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func start() {
@@ -33,13 +40,13 @@ class DLSpriteKitTimer {
         timerAction = SKAction.repeatActionForever(SKAction.sequence([actionwait,actionForEverySecond(actionPerSecond)]))
         
         if let timerAction = timerAction {
-            label.runAction(timerAction, withKey: "timer")
+            self.runAction(timerAction, withKey: "timer")
         }
     }
     
     func pause() {
         running = false
-        label.removeActionForKey("timer")
+        self.removeActionForKey("timer")
     }
     
     func stop() {
@@ -52,9 +59,6 @@ class DLSpriteKitTimer {
         start()
     }
 
-    
-    var label: SKLabelNode
-    
     var running: Bool
     
     private let firstSecond: Int
@@ -69,7 +73,7 @@ class DLSpriteKitTimer {
 
     private var counter: Int {
         didSet {
-            label.text = String(counter)
+            self.text = String(counter)
         }
     }
     
