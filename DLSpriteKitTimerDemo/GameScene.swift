@@ -10,24 +10,36 @@ import SpriteKit
 
 class GameScene: SKScene {
     var timer = DLSpriteKitTimer(usingLabel: SKLabelNode(fontNamed:"Helvetica Neue"), seconds: 10, withActionPersecond: { () -> () in
-        print("One second passed.")
+        print("One second decreased.")
         }, withFiringAction: { () -> () in
         print("Time out!")
+        }, decreasing: true)
+    
+    var secondTimer = DLSpriteKitTimer(usingLabel: SKLabelNode(fontNamed:"Helvetica Neue"), seconds: 10, withActionPersecond: { () -> () in
+        print("One second increased.")
+        }, withFiringAction: { () -> () in
+            print("Time out!")
         }, decreasing: false)
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        timer.label.fontSize = 45;
-        timer.label.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        timer.label.fontSize = 45
+        timer.label.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
+        
+        secondTimer.label.fontSize = 45
+        secondTimer.label.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) - 50)
         
         self.addChild(timer.label)
+        self.addChild(secondTimer.label)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if timer.running {
             timer.stop()
+            secondTimer.stop()
         } else {
             timer.start()
+            secondTimer.start()
         }
     }
    
