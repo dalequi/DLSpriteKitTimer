@@ -7,8 +7,8 @@ This timer is used in [Elem](http://www.elem.rocks).
 DLSpriteKitTimer is a subclass of SKLabelNode, so it's ready to be added to any GameScene as a subchild.
 
 It has two modes, being selected in the initializer with the parameter decreasing: Bool
-* Decreasing time
-* Increasing time
+* Decreasing time: The timer goes from the selected seconds to zero.
+* Increasing time: The timer goes from zero to the selected seconds.
 
 It also allows to set a function executed every second, passing an optional closure to the parameter withActionPersecond: (() -> ())? in the initializer.
 
