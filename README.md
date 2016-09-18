@@ -1,4 +1,4 @@
-# DLSpriteKitTimer
+# DLSpriteKitTimer **Deprecated**
 Simple Timer for SpriteKit Games written in Swift.
 
 This timer is used in [Elem](http://www.elem.rocks).
